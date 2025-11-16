@@ -67,6 +67,16 @@ html[data-theme="light"] {
   --gradient-light: rgba(255,255,255,0.10);
 }
 
+html:not([data-theme="light"]) .main-container {
+  background-color: rgba(0,0,0,0.2);
+  mix-blend-mode: lighten;
+}
+html[data-theme="light"] .main-container {
+  background-color: rgba(255,255,255,0.15);
+  mix-blend-mode: multiply;
+}
+
+
 /* ============================================================
    背景渐变（左暗右亮）— 可被任意页面引用
    ============================================================ */
