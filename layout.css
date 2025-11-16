@@ -4,52 +4,74 @@
 
 /* ------- 页面 & 背景布局 ------- */
 
-body {
+html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;   /* 阻止页面拖动 */
   position: relative;
 }
 
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
+/* 背景图（最底层） */
 #bg-image {
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2;
+  z-index: -3;   /* 最底层 */
+  pointer-events: none;
 }
 
-
+/* 左暗右亮渐变叠层（在背景图上方） */
+#bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--gradient-dark) 0%,
+    var(--gradient-mid) 40%,
+    var(--gradient-light) 100%
+  );
+  z-index: -2;      
+  pointer-events: none;
+}
 
 /* ------- 首页主容器结构 ------- */
 
 .main-container {
-  position: relative;
-  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+
   width: 100%;
   height: 100vh;
-  background-color: transparent;   /* 使用主题变量 */
-  backdrop-filter: none; /* 模糊/叠色 */
+
+  display: flex;
+
+  /* 使用主题变量控制透明度与blur（从 theme.css 获取） */
+  background-color: var(--main-container-bg);
+  backdrop-filter: blur(var(--main-container-blur));
+
+  z-index: 0;    /* 不能高于背景渐变 */
+  overflow: hidden; /* 禁止拖动内部内容 */
 }
 
+/* LEFT PANEL */
 .left-panel {
   width: 48%;
   height: 100%;
   padding: 40px 30px;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   gap: 18px;
 }
 
+/* project slot */
 .project-slot {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -64,6 +86,7 @@ body {
   object-fit: cover;
 }
 
+/* RIGHT PANEL */
 .right-panel {
   width: 52%;
   height: 100%;
@@ -72,29 +95,29 @@ body {
   flex-direction: column;
 }
 
-
-/* ------- 顶部固定按钮 ------- */
+/* ------- 顶部固定按钮（始终可点击） ------- */
 
 #switch {
-    position: fixed;
-    top: -2%;
-    right: 20px;
-    width: 9%;
-    cursor: pointer;
-    z-index: 99;
-    pointer-events: auto;
-}
-
-#brand {
   position: fixed;
-  top: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26%;
+  top: 10px;
+  right: 20px;
+  width: 8%;
+  cursor: pointer;
+  z-index: 9999;   /* 永远在最上层，可互动 */
+  pointer-events: auto;
 }
 
+/* ------- 导航链接布局 ------- */
 
-/* ------- 导航链接布局 (links.css) ------- */
+.link-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  z-index: 20;
+}
 
 .link-item {
   flex-grow: 1;
@@ -102,7 +125,6 @@ body {
   position: relative;
   display: inline-block;
 }
-
 
 /* ------- CV 页面部分布局 ------- */
 
@@ -135,7 +157,6 @@ body {
   width: 50%;
   font-size: 12px;
 }
-
 
 /* ------- mobile 首页布局 ------- */
 
