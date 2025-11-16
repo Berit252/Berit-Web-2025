@@ -1,11 +1,30 @@
-/* Fullscreen background image */
+/* ==========================================
+   layout.css — 全站布局、尺寸、定位
+   ========================================== */
+
+/* ------- 页面 & 背景布局 ------- */
+
+body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
 #bg-image {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2;   /* 比渐变更底层 */
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
 }
 
 /* Left dark → right light gradient overlay */
@@ -23,3 +42,278 @@
     z-index: -1;
     pointer-events: none; /* 不阻挡点击 */
 }
+
+
+
+/* ------- 首页主容器结构（新版首页专用） ------- */
+
+.main-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+}
+
+.left-panel {
+  width: 48%;
+  height: 100%;
+  padding: 40px 30px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.project-slot {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.project-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-panel {
+  width: 52%;
+  height: 100%;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ------- 顶部固定按钮 ------- */
+
+#switch {
+  position: fixed;
+  top: -2%;
+  right: 0;
+  width: 9%;
+  cursor: pointer;
+}
+
+#brand {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+}
+
+
+/* ------- 原本的图片组布局（group0–group8） ------- */
+
+.image-group {
+  position: absolute;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+/* group0 */
+#group0 {
+  height: 210px;
+  width: 290px;
+  top: 20%;
+  left: 46%;
+}
+.image-group #g0m1 { top: 82px; left: 2px; width: 60px; }
+.image-group #g0m2 { top: 10px; left: 50px; width: 80px; }
+.image-group #g0m3 { top: 14px; left: 120px; width: 55px; }
+.image-group #g0m4 { bottom: 28px; left: 90px; width: 60px; }
+.image-group #g0m5 { top: 110px; left: 70px; width: 60px; }
+.image-group #g0m6 { top: 100px; right: 80px; width: 70px; }
+.image-group #g0m7 { top: 2px; right: 40px; width: 60px; }
+.image-group #g0m8 { top: 125px; right: 30px; width: 65px; }
+.image-group #g0m9 { top: 40px; right: 2px; width: 65px; }
+.image-group #g0m10 { bottom: 4px; right: 30px; width: 50px; }
+
+/* group1 & group2 */
+#group1 {
+  height: 180px;
+  width: 272px;
+  top: 2%;
+  left: 10%;
+}
+.image-group #g1m1 { top: 82px; left: 4px; width: 60px; }
+.image-group #g1m2 { top: 22px; left: 80px; width: 90px; }
+.image-group #g1m3 { top: 4px; left: 50px; width: 55px; }
+.image-group #g1m4 { bottom: 6px; left: 150px; width: 55px; }
+.image-group #g1m5 { top: 100px; right: 4px; width: 60px; }
+
+#group2 {
+  height: 120px;
+  width: 280px;
+  top: 11%;
+  right: 7%;
+}
+.image-group #g2m1 { bottom: 2px; left: 3px; width: 80px; }
+.image-group #g2m2 { top: 20px; left: 105px; width: 70px; z-index: 1; }
+.image-group #g2m3 { top: 2px; left: 58px; width: 60px; }
+.image-group #g2m4 { top: 46px; right: 3px; width: 70px; }
+
+/* group3 */
+#group3 {
+  height: 100px;
+  width: 250px;
+  top: 50%;
+  left: 4%;
+}
+.image-group #g3m1 { top: 40px; left: 0px; width: 75px; }
+.image-group #g3m2 { top: 0px; left: 80px; width: 95px; }
+.image-group #g3m3 { top: 50px; right: 0px; width: 85px; }
+
+/* group4 */
+#group4 {
+  height: 152px;
+  width: 274px;
+  top: 60%;
+  left: 23%;
+}
+.image-group #g4m1 { bottom: 2px; left: 2px; width: 80px; }
+.image-group #g4m2 { top: 2px; left: 20px; width: 75px; }
+.image-group #g4m3 { top: 52px; left: 50px; width: 65px; }
+.image-group #g4m4 { top: 40px; left: 110px; width: 70px; }
+.image-group #g4m5 { top: 70px; right: 2px; width: 65px; }
+
+/* group5 */
+#group5 {
+  height: 160px;
+  width: 320px;
+  top: 54%;
+  right: 25%;
+}
+.image-group #g5m1 { bottom: 4px; left: 4px; width: 80px; }
+.image-group #g5m2 { top: 4px; left: 50px; width: 75px; }
+.image-group #g5m3 { top: 10px; left: 120px; width: 100px; }
+.image-group #g5m4 { top: 90px; right: 50px; width: 70px; }
+.image-group #g5m5 { top: 70px; right: 4px; width: 70px; }
+
+/* group6 / 7 / 8 */
+#group6 {
+  height: 160px;
+  width: 160px;
+  top: 28%;
+  left: 26%;
+}
+.image-group #g6m1 { bottom: 4px; left: 4px; width: 80px; }
+.image-group #g6m2 { top: 4px; left: 60px; width: 75px; }
+
+#group7 {
+  height: 160px;
+  width: 210px;
+  bottom: 20%;
+  right: 4%;
+}
+.image-group #g7m1 { top: 4px; left: 60px; width: 90px; }
+.image-group #g7m2 { bottom: 10px; left: 4px; width: 75px; }
+.image-group #g7m3 { top: 70px; right: 4px; width: 150px; }
+
+#group8 {
+  height: 160px;
+  width: 200px;
+  top: 36%;
+  right: 14%;
+}
+.image-group #g8m1 { top: 4px; left: 60px; width: 75px; }
+.image-group #g8m2 { bottom: 4px; left: 4px; width: 70px; }
+.image-group #g8m3 { top: 30px; right: 4px; width: 75px; }
+
+
+/* ------- 导航链接布局 (links.css) ------- */
+
+.link-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+}
+
+.link-item {
+  flex-grow: 1;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+
+/* ------- CV 页面部分布局 ------- */
+
+.contact-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contact-container {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  z-index: 9;
+}
+
+.artist-portrait {
+  max-width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border-radius: 50%;
+}
+
+.contactways {
+  position: fixed;
+  bottom: 0;
+  left: 1%;
+  width: 50%;
+  font-size: 12px;
+}
+
+
+/* ------- mobile 首页布局 ------- */
+
+.mobile-container,
+.container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.instructions {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Fullscreen background image */
+#bg-image {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;   /* 比渐变更底层 */
+}
+
+
