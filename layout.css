@@ -111,13 +111,13 @@ body {
 
 /* ------- 导航链接布局 (links.css) ------- */
 
-.link-container {
+.main-container {
+  position: relative;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: fixed;
-  bottom: 20px;
   width: 100%;
+  height: 100vh;
+  background-color: var(--main-container-bg);   /* 使用主题变量 */
+  backdrop-filter: blur(var(--main-container-blur)); /* 模糊/叠色 */
 }
 
 .link-item {
