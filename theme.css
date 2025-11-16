@@ -8,8 +8,8 @@
   --bg-color: #00001a;
   --bg-overlay: rgba(0, 0, 26, 0.9);
 
-  --main-container-bg: rgba(0, 0, 0, 0.25);   /* 深色模式：略暗的面板 */
-  --main-container-blur: 2px;
+  --main-container-bg: rgba(0, 0, 0, 0);   /* 深色模式：略暗的面板 */
+  --main-container-blur: 0px;
 
   /* 文本与边框 */
   --text-color: #dcffb8;
