@@ -5,35 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Berit’s Web</title>
 
-    <!-- Your fonts -->
+    <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Your styles -->
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="layout.css" />
-    <link rel="stylesheet" href="effects.css" />
-    <link rel="stylesheet" href="theme.css" />
-    
+    <!-- CSS files -->
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="effects.css">
+    <link rel="stylesheet" href="theme.css">
+
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
     </style>
 </head>
 
 <body>
-    
-    <img id="bg-image" src="img/IMG_7069.jpeg" alt="">
+
+    <!-- 背景图（永远在底层） -->
+    <img id="bg-image" src="img/IMG_7069.jpeg" alt="background">
     <div id="bg-gradient"></div>
 
-    <!-- MAIN GAME-STYLE LAYOUT -->
+    <!-- Theme Switch -->
+    <img src="img/On-Off.png" id="switch" alt="theme-switch">
+
+    <!-- MAIN GAME UI -->
     <div class="main-container">
 
-        <!-- LEFT PANEL: project grid -->
+        <!-- LEFT PROJECT GRID -->
         <div class="left-panel" id="projectGrid"></div>
 
-        <!-- RIGHT PANEL: details -->
+        <!-- RIGHT DETAIL PANEL -->
         <div class="right-panel">
             <div class="project-title" id="detailTitle">Select a Project</div>
             <div class="project-date" id="detailDate"></div>
@@ -44,16 +48,14 @@
 
     </div>
 
-    <!-- Brand Icon / Switch  -->
-    <img src="img/On-Off.png" id="switch" alt="switch">
-
-    <!-- //link container// -->
+    <!-- Bottom Link Section -->
     <div class="link-container">
+
       <div class="link-item" id="webs">
         <a href="#">webs</a>
         <div class="tooltip">
           <a href="https://berit252.github.io/SPW/" target="_blank">SPW 1.1</a><br>
-          <a href="https://berit252.github.io/SPW2.0/" target="_blank">SPW 2.0</a><br>
+          <a href="https://berit252.github.io/SPW2.0/" target="_blank">SPW 2.0</a>
         </div>
       </div>
 
@@ -62,18 +64,31 @@
         <div class="tooltip">
           <a href="https://www.youtube.com/channel/UCR7-zHbCSnKEdc8faRAZ83A" target="_blank">youtube</a><br>
           <a href="https://space.bilibili.com/38318239" target="_blank">bilibili</a><br>
-          <a href="https://www.xiaohongshu.com/user/profile/5f3f89a4000000000101ed42?xhsshare=CopyLink&appuid=5f3f89a4000000000101ed42&apptime=1710620817" target="_blank">red</a>
+          <a href="https://www.xiaohongshu.com/user/profile/5f3f89a4000000000101ed42" target="_blank">red</a>
         </div>
       </div>
 
       <div class="link-item"><a href="indexCV.html">CV</a></div>
       <div class="link-item"><a href="contact.html">contact</a></div>
-    </div>  
 
-    <!-- Your existing JS -->
-    <script src="script.js"></script>
+    </div>
 
-    <!-- NEW PROJECT GENERATION SCRIPT -->
+    <!-- Light/Dark Switch Script -->
+    <script>
+      const switchBtn = document.getElementById('switch');
+      switchBtn.addEventListener('click', () => {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme');
+
+        html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+
+        switchBtn.style.transition = "transform 0.25s ease";
+        switchBtn.style.transform = "translateY(16px)";
+        setTimeout(() => switchBtn.style.transform = "translateY(0)", 250);
+      });
+    </script>
+
+    <!-- PROJECT LIST SCRIPT -->
     <script>
         const projects = [
             {
@@ -100,7 +115,6 @@
                 preview: "img/C027.jpg",
                 url: "./DetailPages/Flow.html"
             }
-            // Add the rest of your projects here...
         ];
 
         const grid = document.getElementById("projectGrid");
@@ -109,8 +123,8 @@
             const div = document.createElement("div");
             div.className = "project-slot";
             div.innerHTML = `<img src="${p.thumb}">`;
-            div.onclick = () => showDetails(index);
             div.onmouseover = () => showDetails(index);
+            div.onclick = () => showDetails(index);
             grid.appendChild(div);
         });
 
@@ -120,9 +134,10 @@
             detailDate.innerHTML = p.date;
             detailDesc.innerHTML = p.desc;
             detailImg.src = p.preview;
+
             detailImg.style.display = "block";
-            detailBtn.href = p.url;
             detailBtn.style.display = "inline-block";
+            detailBtn.href = p.url;
         }
     </script>
 
