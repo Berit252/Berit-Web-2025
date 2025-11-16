@@ -4,8 +4,8 @@
 
 /* --- 默认主题（Dark Mode） --- */
 :root {
-  --bg-color: #00001a;
-  --bg-overlay: rgba(0, 0, 26, 0.9);
+   --main-container-bg: rgba(0,0,0,0.25);   /* 深色下稍微暗一点 */
+   --main-container-blur: 2px;
 
   --text-color: #dcffb8;
   --text-subtle: rgba(220, 255, 184, 0.65);
@@ -39,9 +39,9 @@
    ============================================================ */
 
 html[data-theme="light"] {
-  --bg-color: #fafafa;
-  --bg-overlay: rgba(255, 255, 255, 0.85);
-
+   --main-container-bg: rgba(255,255,255,0.30);  /* 亮色模式更亮 */
+   --main-container-blur: 0px;
+   
   --text-color: #1a1a1a;
   --text-subtle: rgba(0, 0, 0, 0.6);
 
@@ -65,15 +65,6 @@ html[data-theme="light"] {
   --gradient-dark: rgba(255,255,255,0.80);
   --gradient-mid: rgba(255,255,255,0.45);
   --gradient-light: rgba(255,255,255,0.10);
-}
-
-html:not([data-theme="light"]) .main-container {
-  background-color: rgba(0,0,0,0.2);
-  mix-blend-mode: lighten;
-}
-html[data-theme="light"] .main-container {
-  background-color: rgba(255,255,255,0.15);
-  mix-blend-mode: multiply;
 }
 
 
