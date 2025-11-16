@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berit’s Web</title>
+
+    <!-- Your fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Your existing styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="links.css" />
+
+    <!-- Keep your group CSS for hover frames -->
+    <link rel="stylesheet" href="group0.css" />
+    <link rel="stylesheet" href="group1&2.css" />
+    <link rel="stylesheet" href="group3.css" />
+    <link rel="stylesheet" href="group4.css" />
+    <link rel="stylesheet" href="group5.css" />
+    <link rel="stylesheet" href="group6&7&8.css" />
+
+    <style>
+        /* ===== NEW LAYOUT FOR GAME UI STYLE ===== */
+
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .main-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            backdrop-filter: blur(4px);
+        }
+
+        /* LEFT GRID */
+        .left-panel {
+            width: 48%;
+            height: 100%;
+            padding: 40px 30px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .project-slot {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .project-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.88;
+            transition: 0.2s;
+        }
+
+        .project-slot:hover img {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            width: 52%;
+            height: 100%;
+            padding: 45px;
+            color: white;
+            font-family: "Open Sans";
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .project-date {
+            opacity: 0.6;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .project-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            height: 120px;
+            overflow-y: auto;
+        }
+
+        .preview-img {
+            width: 85%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 35px;
+        }
+
+        .enter-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .enter-button:hover {
+            background: rgba(255,255,255,0.28);
+        }
+
+        /* Keep your background video */
+        #bg-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.32;
+        }
+    </style>
+</head>
+
+<body>
+  
+    <!-- Background image -->
+    <img src="img/background.png" id="bg-image" alt="background">
+    <div id="bg-gradient"></div>
+
+    <!-- Brand Icon / Switch (your original) -->
+    <img src="img/On-Off.png" id="switch" alt="switch">
+
+    <!-- MAIN GAME-STYLE LAYOUT -->
+    <div class="main-container">
+
+        <!-- LEFT PANEL: project grid -->
+        <div class="left-panel" id="projectGrid"></div>
+
+        <!-- RIGHT PANEL: details -->
+        <div class="right-panel">
+            <div class="project-title" id="detailTitle">Select a Project</div>
+            <div class="project-date" id="detailDate"></div>
+            <div class="project-desc" id="detailDesc">Hover or click a project on the left.</div>
+            <img id="detailImg" class="preview-img" style="display:none;">
+            <a id="detailBtn" class="enter-button" href="#" style="display:none;">Access Project</a>
+        </div>
+
+    </div>
+
+    <!-- Your existing JS -->
+    <script src="script.js"></script>
+
+    <!-- NEW PROJECT GENERATION SCRIPT -->
+    <script>
+        const projects = [
+            {
+                title: "Close Up A Bit",
+                date: "10.2023",
+                desc: "Communicate with me here without words,<br>just get closer.",
+                thumb: "img/C021.jpeg",
+                preview: "img/C021.jpeg",
+                url: "./DetailPages/CloseUpABit.html"
+            },
+            {
+                title: "The Same Underneath",
+                date: "09.2023",
+                desc: "An installation using ANS's structure as inspiration.",
+                thumb: "img/C026.jpg",
+                preview: "img/C022.jpg",
+                url: "./DetailPages/TheSameUnderneath.html"
+            },
+            {
+                title: "Flow",
+                date: "09.2023",
+                desc: "An experimental video.",
+                thumb: "img/C023.jpg",
+                preview: "img/C027.jpg",
+                url: "./DetailPages/Flow.html"
+            }
+            // Add the rest of your projects here...
+        ];
+
+        const grid = document.getElementById("projectGrid");
+
+        projects.forEach((p, index) => {
+            const div = document.createElement("div");
+            div.className = "project-slot";
+            div.innerHTML = `<img src="${p.thumb}">`;
+            div.onclick = () => showDetails(index);
+            div.onmouseover = () => showDetails(index);
+            grid.appendChild(div);
+        });
+
+        function showDetails(i) {
+            const p = projects[i];
+            detailTitle.innerHTML = p.title;
+            detailDate.innerHTML = p.date;
+            detailDesc.innerHTML = p.desc;
+            detailImg.src = p.preview;
+            detailImg.style.display = "block";
+            detailBtn.href = p.url;
+            detailBtn.style.display = "inline-block";
+        }
+    </script>
+
+</body>
+</html>
