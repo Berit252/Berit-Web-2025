@@ -67,7 +67,7 @@ html, body {
   padding: 40px 30px;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(4, 2fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
@@ -99,7 +99,7 @@ html, body {
 
 #switch {
   position: fixed;
-  top: -8%;
+  top: -2%;
   right: 20px;
   width: 8%;
   cursor: pointer;
