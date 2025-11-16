@@ -1,42 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+
   let isBgChanged = false;
   let switchImg = document.getElementById('switch');
-  let overlay = document.querySelector('.video-overlay');
+  let mainContainer = document.querySelector('.main-container');
 
   switchImg.addEventListener('click', function() {
 
+    // 点击动画（保持）
     this.style.transition = 'transform 0.25s ease';
-    this.style.transform = 'translateY(16px)'; // 向下位移
+    this.style.transform = 'translateY(16px)';
     setTimeout(() => {
-      this.style.transform = 'translateY(0)'; // 回归原位
+      this.style.transform = 'translateY(0)';
     }, 250);
 
-    if (!isBgChanged) {
-      overlay.style.backgroundColor = 'rgba(160, 160, 255, 0.95)'; // 新颜色
-      isBgChanged = true;
-    } else {
-      overlay.style.backgroundColor = 'rgba(0, 0, 26, 0.94)'; // 回到初始颜色
-      isBgChanged = false;
-    }
-  });
-});
+    // 用 CSS 变量切换主题（推荐方式）
+    document.documentElement.toggleAttribute('data-theme', 'light');
 
-document.querySelectorAll('.image-group').forEach(group => {
-  group.addEventListener('mouseenter', function() {
-    this.querySelector('.info').classList.add('slideUp');
-  });
-});
-
-
-//页面转换动画
-document.querySelectorAll('.info').forEach(group => {
-  group.addEventListener('click', function() {
-    this.classList.add('animating'); // 添加动画类
-    const destinationURL = this.getAttribute('data-url'); // 假设每个容器有一个data-url属性
-
-    // 监听动画结束事件
-    this.addEventListener('animationend', function() {
-      window.location.href = destinationURL; // 动画结束后跳转到新页面
-    }, { once: true }); // 确保事件监听器只触发一次
   });
 });
