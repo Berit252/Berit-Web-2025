@@ -99,11 +99,11 @@ html, body {
 
 #switch {
   position: fixed;
-  top: -2%;
+  top: -8%;
   right: 20px;
   width: 8%;
   cursor: pointer;
-  z-index: 9999;   /* 永远在最上层，可互动 */
+  z-index: 999;   /* 永远在最上层，可互动 */
   pointer-events: auto;
 }
 
