@@ -37,7 +37,7 @@ body {
   width: 100%;
   height: 100vh;
   background-color: transparent;   /* 使用主题变量 */
-  backdrop-filter: blur(var(--main-container-blur)); /* 模糊/叠色 */
+  backdrop-filter: none; /* 模糊/叠色 */
 }
 
 .left-panel {
